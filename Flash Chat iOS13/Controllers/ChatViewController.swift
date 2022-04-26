@@ -12,22 +12,38 @@ import Firebase
 class ChatViewController: UIViewController {
     
     let db = Firestore.firestore()
+    var recipientId : String?
     @IBOutlet weak var activityIndicator : UIActivityIndicatorView!
     @IBOutlet weak var messageTextfield: UITextField!
     @IBOutlet weak var tableView : UITableView!
     
     var messages = [Message]()
+    init() {
+           super.init(nibName: nil, bundle: nil)
+        }
+    
+    required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+   //     activityIndicator.startAnimating()
         navigationItem.title = K.appName
-        navigationItem.hidesBackButton = true
-        
+
         tableView.dataSource = self
         tableView.delegate = self
         
         tableView.register(UINib(nibName: K.cellNibName,bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         
         getUserMessages()
+     //   activityIndicator.stopAnimating()
+    }
+    
+    func scrollToBottom()  {
+        let index = IndexPath(row: self.messages.count - 1, section: 0)
+        
+        self.tableView.scrollToRow(at: index, at: .top, animated: true)
     }
     
     func getUserMessages() {
@@ -35,37 +51,48 @@ class ChatViewController: UIViewController {
         db.collection(K.FStore.collectionName)
             .order(by: K.FStore.timeStampField)
             .addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-                let alert = UIAlertController(title: "Error", message: "Something went wrong" , preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default))
-                
-                self.present(alert, animated: true, completion: nil)}
-            else {
-                self.messages = []
-                for document in querySnapshot!.documents {
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    let alert = UIAlertController(title: "Error", message: "Something went wrong" , preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
                     
-                    let data = document.data()
-                    
-                    if let body = data[K.FStore.bodyField] as? String ,
-                       let sender = data[K.FStore.senderField] as? String ,
-                       let receiverId = data[K.FStore.bodyField] as? String,
-                       let createdDate = data[K.FStore.createdDateField] as? String,
-                       let timeStamp = data[K.FStore.timeStampField] as? String {
+                    self.present(alert, animated: true, completion: nil)}
+                else {
+                    self.messages = []
+                    for document in querySnapshot!.documents {
                         
-                        self.messages.append(Message(receiverId: receiverId , sender: sender , body: body, createdDate: createdDate, timeStamp: timeStamp ))
+                        let data = document.data()
+                        
+                        if let body = data[K.FStore.bodyField] as? String ,
+                           let sender = data[K.FStore.senderField] as? String ,
+                           let senderId = data[K.FStore.senderId] as? String ,
+                           let receiverId = data[K.FStore.bodyField] as? String,
+                           let createdDate = data[K.FStore.createdDateField] as? String,
+                           let timeStamp = data[K.FStore.timeStampField] as? String {
+                            
+                            self.messages.append(Message(senderId: senderId, receiverId: receiverId , sender: sender , body: body, createdDate: createdDate, timeStamp: timeStamp ))
+                        }
+                        
                     }
                     
+                    DispatchQueue.main.async{
+                        self.tableView.reloadData()
+                        self.scrollToBottom()
+                        self.activityIndicator.stopAnimating()
+                    }
                 }
-                
-                DispatchQueue.main.async{
-                    self.tableView.reloadData()
-                    self.activityIndicator.stopAnimating()
-                }
-            }
-        }}
+            }}
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        let body = messageTextfield.text
+        if  (body ?? "").isEmpty ||
+            body!.trimmingCharacters(in: .whitespaces).isEmpty {
+            messageTextfield.placeholder = "please insert..."
+            messageTextfield.text = ""
+            return
+        }
+        activityIndicator.startAnimating()
+
         let receiverId = "receiverId"
         if let messageBody = messageTextfield.text,
            let senderEmail = Auth.auth().currentUser?.email ,
@@ -82,7 +109,12 @@ class ChatViewController: UIViewController {
                     print("there is an issue \(e)")
                     return
                 }
-                self.messageTextfield.text = ""
+                
+                DispatchQueue.main.async{
+                    self.messageTextfield.text = ""
+                    self.activityIndicator.stopAnimating()
+                }
+                
             }
         }
     }
@@ -106,10 +138,24 @@ extension ChatViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let message = messages[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-        as? MessageCell
-        cell?.label?.text = messages[indexPath.row].body
-        return cell!
+        as! MessageCell
+        
+        cell.label?.text = message.body
+        
+        if message.senderId == Auth.auth().currentUser?.uid {
+            cell.leftImageView.isHidden = false
+            cell.rightImageView.isHidden = true
+            cell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.purple)
+        }else {
+            cell.leftImageView.isHidden = true
+            cell.rightImageView.isHidden = false
+            cell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+        }
+        return cell
     }
     
     

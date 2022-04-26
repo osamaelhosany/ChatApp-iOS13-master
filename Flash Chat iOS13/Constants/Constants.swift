@@ -4,7 +4,11 @@ struct K {
     static let cellNibName = "MessageCell"
     static let registerSegue = "RegisterToChat"
     static let loginSegue = "LoginToChat"
-    
+    static let loginToUsersSegue = "loginToUsers"
+    static let usersToChat = "usersToChat"
+    static let userViewCell = "UserViewCell"
+    static let userViewCellIdentifier = "userViewCellIdentifier"
+
     struct BrandColors {
         static let purple = "BrandPurple"
         static let lightPurple = "BrandLightPurple"

@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 struct Message : Codable {
-    var senderId : String { return Auth.auth().currentUser!.uid }
+    var senderId : String 
     let receiverId : String
     let sender : String
     let body : String

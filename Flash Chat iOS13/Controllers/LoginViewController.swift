@@ -31,9 +31,10 @@ class LoginViewController: UIViewController {
                         self.dismiss(animated: true)
                         }))
                     
-                    self.present(alert, animated: true, completion: nil)                }else {
+                    self.present(alert, animated: true, completion: nil)                }
+                else {
                     
-                        self.performSegue(withIdentifier: K.loginSegue, sender: self)
+                        self.performSegue(withIdentifier: K.loginToUsersSegue, sender: self)
                 }
                 
                 self.loader.stopAnimating()

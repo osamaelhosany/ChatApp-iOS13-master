@@ -17,9 +17,14 @@
 		0B62818F235DF01000E35CAF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62818E235DF01000E35CAF /* LoginViewController.swift */; };
 		0B628191235DF01B00E35CAF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B628190235DF01B00E35CAF /* ChatViewController.swift */; };
 		0B62819E235F0F4D00E35CAF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0B62819D235F0F4D00E35CAF /* README.md */; };
+		4233B21828104B5200550622 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233B21728104B5100550622 /* UsersViewController.swift */; };
+		4233B21A28104DD800550622 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233B21928104DD800550622 /* User.swift */; };
+		4233B21D28104F6C00550622 /* UserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233B21B28104F6C00550622 /* UserViewCell.swift */; };
+		4233B21E28104F6C00550622 /* UserViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4233B21C28104F6C00550622 /* UserViewCell.xib */; };
 		425AF5C9280EB3A90018F429 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AF5C8280EB3A90018F429 /* Message.swift */; };
 		425AF5D1280EC20E0018F429 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AF5CF280EC20E0018F429 /* MessageCell.swift */; };
 		425AF5D2280EC20E0018F429 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 425AF5D0280EC20E0018F429 /* MessageCell.xib */; };
+		427D1732281787AE00A2C3FF /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427D1731281787AE00A2C3FF /* MyProfileViewController.swift */; };
 		42B10C7B280D939D008B917D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42B10C7A280D939D008B917D /* GoogleService-Info.plist */; };
 		42F3FB25280E504000146B02 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F3FB24280E504000146B02 /* Constants.swift */; };
 		64A9A340C4DCD8ECCD1CABD9 /* Pods_Flash_Chat_iOS13.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5C81831BB04DFFFE033EE7 /* Pods_Flash_Chat_iOS13.framework */; };
@@ -40,9 +45,14 @@
 		0B62819D235F0F4D00E35CAF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0E5D9A4622795B3D7866C211 /* Pods-Flash Chat iOS13.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flash Chat iOS13.release.xcconfig"; path = "Target Support Files/Pods-Flash Chat iOS13/Pods-Flash Chat iOS13.release.xcconfig"; sourceTree = "<group>"; };
 		2CE35DBD10E4F8A28DF65B6A /* Pods-Flash Chat iOS13.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flash Chat iOS13.debug.xcconfig"; path = "Target Support Files/Pods-Flash Chat iOS13/Pods-Flash Chat iOS13.debug.xcconfig"; sourceTree = "<group>"; };
+		4233B21728104B5100550622 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		4233B21928104DD800550622 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "Flash Chat iOS13/Controllers/User.swift"; sourceTree = SOURCE_ROOT; };
+		4233B21B28104F6C00550622 /* UserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCell.swift; sourceTree = "<group>"; };
+		4233B21C28104F6C00550622 /* UserViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserViewCell.xib; sourceTree = "<group>"; };
 		425AF5C8280EB3A90018F429 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = "Flash Chat iOS13/Constants/Message.swift"; sourceTree = SOURCE_ROOT; };
 		425AF5CF280EC20E0018F429 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		425AF5D0280EC20E0018F429 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		427D1731281787AE00A2C3FF /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		42B10C7A280D939D008B917D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		42F3FB24280E504000146B02 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7B5C81831BB04DFFFE033EE7 /* Pods_Flash_Chat_iOS13.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flash_Chat_iOS13.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +113,8 @@
 				0B62818C235DF00B00E35CAF /* RegisterViewController.swift */,
 				0B62818E235DF01000E35CAF /* LoginViewController.swift */,
 				0B628190235DF01B00E35CAF /* ChatViewController.swift */,
+				4233B21728104B5100550622 /* UsersViewController.swift */,
+				427D1731281787AE00A2C3FF /* MyProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -120,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				425AF5C8280EB3A90018F429 /* Message.swift */,
+				4233B21928104DD800550622 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +142,8 @@
 			children = (
 				425AF5CF280EC20E0018F429 /* MessageCell.swift */,
 				425AF5D0280EC20E0018F429 /* MessageCell.xib */,
+				4233B21B28104F6C00550622 /* UserViewCell.swift */,
+				4233B21C28104F6C00550622 /* UserViewCell.xib */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -222,6 +237,7 @@
 				425AF5D2280EC20E0018F429 /* MessageCell.xib in Resources */,
 				0B628180235DEE8400E35CAF /* Assets.xcassets in Resources */,
 				42B10C7B280D939D008B917D /* GoogleService-Info.plist in Resources */,
+				4233B21E28104F6C00550622 /* UserViewCell.xib in Resources */,
 				0B62819E235F0F4D00E35CAF /* README.md in Resources */,
 				0B62817E235DEE8100E35CAF /* Main.storyboard in Resources */,
 			);
@@ -276,15 +292,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427D1732281787AE00A2C3FF /* MyProfileViewController.swift in Sources */,
 				0B62818B235DF00000E35CAF /* WelcomeViewController.swift in Sources */,
 				0B628177235DEE8100E35CAF /* AppDelegate.swift in Sources */,
 				0B628179235DEE8100E35CAF /* SceneDelegate.swift in Sources */,
+				4233B21D28104F6C00550622 /* UserViewCell.swift in Sources */,
 				0B62818F235DF01000E35CAF /* LoginViewController.swift in Sources */,
 				42F3FB25280E504000146B02 /* Constants.swift in Sources */,
 				425AF5C9280EB3A90018F429 /* Message.swift in Sources */,
 				0B628191235DF01B00E35CAF /* ChatViewController.swift in Sources */,
+				4233B21828104B5200550622 /* UsersViewController.swift in Sources */,
 				0B62818D235DF00B00E35CAF /* RegisterViewController.swift in Sources */,
 				425AF5D1280EC20E0018F429 /* MessageCell.swift in Sources */,
+				4233B21A28104DD800550622 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
